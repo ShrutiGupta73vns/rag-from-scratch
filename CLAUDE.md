@@ -27,4 +27,4 @@ Corpus idea: public Salesforce/Data Cloud docs.
 - `notebooks/`: experiments
 - `src/`: load, chunk, embed, store, retrieve, generate, pipeline
 - `eval/`: test questions
-- `notes/interview.md`: concepts in the user's own words, for interview revision; add each new concept here as it's covered
+- `notes/interview.md`: concepts in the user's own words, for interview revision. It has an "Interview Questions" section (numbered Q1, Q2, ... with short key points, grouped by topic); whenever a new interview-worthy concept comes up, add a question there without being asked. This file is git-ignored.
