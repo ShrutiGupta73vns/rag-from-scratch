@@ -25,6 +25,7 @@ Corpus idea: public Salesforce/Data Cloud docs.
 ## Structure
 - `data/raw/`: source docs
 - `notebooks/`: experiments
-- `src/`: load, chunk, embed, store, retrieve, generate, pipeline
-- `eval/`: test questions
+- `src/`: config, load, chunk, embed, store (NumpyStore: add/search), retrieve, generate, pipeline. Run: `.venv\Scripts\python.exe -m src.pipeline "question"`
+- `eval/`: questions.json + run_eval.py (`python -m eval.run_eval <run_name>` → eval/results/<run_name>.json). The llama3.2 judge gives false negatives, so check failures by hand.
+- Baseline (2026-10-25, numpy, 150/30 chunks, k=5): retrieval 22/22, answers 21/24 reported, 23/24 after hand-check (q10, q16 judge errors; q21 partial)
 - `notes/interview.md`: concepts in the user's own words, for interview revision. It has an "Interview Questions" section (numbered Q1, Q2, ... with short key points, grouped by topic); whenever a new interview-worthy concept comes up, add a question there without being asked. This file is git-ignored.

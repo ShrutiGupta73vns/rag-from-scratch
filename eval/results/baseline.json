@@ -1,0 +1,386 @@
+[
+  {
+    "id": "q01",
+    "type": "fact",
+    "question": "What is the default TTL for Halcyon's shared Redis cache?",
+    "expected": "47 seconds",
+    "answer": "The default TTL for Halcyon's shared Redis cache is 47 seconds. [01_caching_and_cdn.pdf, page 1]",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p1-c1",
+      "01_caching_and_cdn.pdf-p1-c2",
+      "01_caching_and_cdn.pdf-p1-c0",
+      "01_caching_and_cdn.pdf-p2-c1",
+      "02_project_falcon_databases.pdf-p1-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q02",
+    "type": "reasoning",
+    "question": "Why did Halcyon choose 47 seconds as the Kestrel TTL?",
+    "expected": "Prices republish every 60s; 47s TTL plus up to 13s propagation keeps staleness under 60s, and non-round TTLs avoid synchronized expiry.",
+    "answer": "Halcyon chose 47 seconds as the Kestrel TTL to ensure that the worst-case staleness of data is under 60 seconds, considering a 47-second TTL plus up to 13 seconds of propagation delay. This choice was made to avoid round numbers like 30 or 60 seconds, which can cause synchronized load on the database, and to introduce a random jitter of plus or minus 10 percent to the TTL.",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p1-c2",
+      "01_caching_and_cdn.pdf-p1-c3",
+      "01_caching_and_cdn.pdf-p3-c1",
+      "01_caching_and_cdn.pdf-p1-c1",
+      "02_project_falcon_databases.pdf-p1-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q03",
+    "type": "fact",
+    "question": "What beta value does Halcyon use for XFetch probabilistic early expiration?",
+    "expected": "1.3",
+    "answer": "Halcyon uses a beta value of 1.3 for XFetch probabilistic early expiration. [01_caching_and_cdn.pdf, page 2]",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p2-c1",
+      "01_caching_and_cdn.pdf-p2-c2",
+      "01_caching_and_cdn.pdf-p2-c0",
+      "01_caching_and_cdn.pdf-p1-c3",
+      "01_caching_and_cdn.pdf-p3-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q04",
+    "type": "table",
+    "question": "What is the size limit of the in-process (T3) cache?",
+    "expected": "2,048 entries per instance",
+    "answer": "The size limit of the in-process cache (T3) is 2,048 entries per instance.",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p1-c1",
+      "02_project_falcon_databases.pdf-p3-c1",
+      "01_caching_and_cdn.pdf-p3-c1",
+      "01_caching_and_cdn.pdf-p1-c2",
+      "02_project_falcon_databases.pdf-p3-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q05",
+    "type": "fact",
+    "question": "Which CDN provider does Halcyon use and why was it chosen?",
+    "expected": "Stratus Edge, mainly for its 38 POPs in South and South-East Asia",
+    "answer": "According to [01_caching_and_cdn.pdf, page 2], Halcyon uses Stratus Edge as its CDN provider. It was chosen in 2024 mainly for its 38 POPs in South and South-East Asia.",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p2-c3",
+      "01_caching_and_cdn.pdf-p2-c2",
+      "01_caching_and_cdn.pdf-p1-c1",
+      "01_caching_and_cdn.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p1-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q06",
+    "type": "reasoning",
+    "question": "Why is write-behind caching banned for financial data at Halcyon?",
+    "expected": "INC-2291 Diwali wallet incident: a Kestrel primary failed before flushing and 1,140 wallet top-ups were lost for 40 minutes.",
+    "answer": "Write-behind caching is banned for financial data at Halcyon because of the Diwali wallet incident (INC-2291), where 1,140 wallet top-ups were lost from the database for 40 minutes until they were reconstructed from payment-gateway logs. [01_caching_and_cdn.pdf, page 3]",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p2-c0",
+      "01_caching_and_cdn.pdf-p3-c1",
+      "01_caching_and_cdn.pdf-p2-c1",
+      "01_caching_and_cdn.pdf-p1-c0",
+      "01_caching_and_cdn.pdf-p3-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q07",
+    "type": "fact",
+    "question": "How many full-site CDN purges are allowed per hour?",
+    "expected": "3 per hour",
+    "answer": "3. [01_caching_and_cdn.pdf, page 3]",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p2-c2",
+      "01_caching_and_cdn.pdf-p1-c1",
+      "01_caching_and_cdn.pdf-p1-c2",
+      "01_caching_and_cdn.pdf-p3-c0",
+      "01_caching_and_cdn.pdf-p3-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q08",
+    "type": "fact",
+    "question": "How many virtual nodes per physical cluster does Project Falcon use?",
+    "expected": "150",
+    "answer": "According to [02_project_falcon_databases.pdf, page 2], Project Falcon uses 150 virtual nodes per physical cluster.",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p2-c2",
+      "02_project_falcon_databases.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p1-c1",
+      "02_project_falcon_databases.pdf-p2-c1",
+      "01_caching_and_cdn.pdf-p1-c2"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q09",
+    "type": "reasoning",
+    "question": "What shard key does Falcon use and why?",
+    "expected": "merchant_id, because almost all queries are scoped to one merchant, avoiding cross-shard joins",
+    "answer": "The shard key used in Falcon is merchant_id. It is used because nearly every query in the merchant platform is scoped to one merchant, so this key keeps each merchant's orders, products and settlements on the same shard and avoids cross-shard joins.",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p2-c0",
+      "02_project_falcon_databases.pdf-p1-c3",
+      "02_project_falcon_databases.pdf-p2-c1",
+      "02_project_falcon_databases.pdf-p1-c2",
+      "02_project_falcon_databases.pdf-p3-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q10",
+    "type": "fact",
+    "question": "How many logical shards and physical clusters does Falcon have?",
+    "expected": "64 logical shards on 8 physical clusters",
+    "answer": "According to the context, Falcon has 64 logical shards and 8 physical database clusters.",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p2-c1",
+      "02_project_falcon_databases.pdf-p2-c0",
+      "02_project_falcon_databases.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p2-c2",
+      "02_project_falcon_databases.pdf-p3-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": false
+  },
+  {
+    "id": "q11",
+    "type": "fact",
+    "question": "At what replication lag does Falcon alert?",
+    "expected": "800 milliseconds for more than one minute",
+    "answer": "According to [02_project_falcon_databases.pdf, page 1], Falcon alerts when the asynchronous replication lag exceeds 800 milliseconds for more than one minute.",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p1-c0",
+      "01_caching_and_cdn.pdf-p1-c2",
+      "02_project_falcon_databases.pdf-p3-c1",
+      "02_project_falcon_databases.pdf-p1-c1",
+      "02_project_falcon_databases.pdf-p1-c2"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q12",
+    "type": "fact",
+    "question": "Is Falcon's settlement ledger CP or AP?",
+    "expected": "CP",
+    "answer": "CP. [02_project_falcon_databases.pdf, page 2]",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p2-c3",
+      "02_project_falcon_databases.pdf-p2-c0",
+      "02_project_falcon_databases.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p2-c2",
+      "02_project_falcon_databases.pdf-p3-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q13",
+    "type": "table",
+    "question": "Which sharding strategy does Falcon use only for enterprise merchants?",
+    "expected": "Directory-based, for 12 enterprise merchants",
+    "answer": "Directory-based",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p2-c0",
+      "02_project_falcon_databases.pdf-p3-c1",
+      "02_project_falcon_databases.pdf-p1-c2",
+      "02_project_falcon_databases.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p1-c3"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q14",
+    "type": "fact",
+    "question": "What is the name of the routing library used by Falcon?",
+    "expected": "Perch",
+    "answer": "Perch. [02_project_falcon_databases.pdf, page 2]",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p2-c2",
+      "02_project_falcon_databases.pdf-p2-c0",
+      "02_project_falcon_databases.pdf-p2-c1",
+      "02_project_falcon_databases.pdf-p3-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q15",
+    "type": "fact",
+    "question": "How long does ShopKart hold an inventory reservation?",
+    "expected": "7 minutes",
+    "answer": "ShopKart holds an inventory reservation for 7 minutes. [03_shopkart_checkout_case_study.pdf, page 1]",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p1-c2",
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c1",
+      "03_shopkart_checkout_case_study.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p2-c2"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q16",
+    "type": "table",
+    "question": "What was ShopKart's checkout p99 latency in 2025 vs 2024?",
+    "expected": "410 ms in 2025 vs 2,800 ms in 2024",
+    "answer": "According to the context, ShopKart's checkout p99 latency in 2025 was 410 ms, which is 85% lower than the 2024 value of 2,800 ms.",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "03_shopkart_checkout_case_study.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p2-c1",
+      "03_shopkart_checkout_case_study.pdf-p2-c2",
+      "03_shopkart_checkout_case_study.pdf-p1-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": false
+  },
+  {
+    "id": "q17",
+    "type": "fact",
+    "question": "What is ShopKart's internal message queue called?",
+    "expected": "Saathi (built on Apache Kafka)",
+    "answer": "Saathi, built on Apache Kafka.",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c1",
+      "03_shopkart_checkout_case_study.pdf-p1-c2",
+      "03_shopkart_checkout_case_study.pdf-p2-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q18",
+    "type": "reasoning",
+    "question": "How many inventory units were oversold in 2025 and what caused it?",
+    "expected": "14 units, caused by clock skew (one sweeper node's clock was 9 seconds fast)",
+    "answer": "14 units. According to the context, the remaining 14 oversold units came from a clock-skew bug, where one sweeper node's clock was 9 seconds fast, so it released some reservations early.",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p2-c2",
+      "03_shopkart_checkout_case_study.pdf-p2-c1",
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c1",
+      "02_project_falcon_databases.pdf-p3-c0"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q19",
+    "type": "fact",
+    "question": "What is the per-user checkout rate limit at ShopKart?",
+    "expected": "5 requests per second with a burst of 10 (token bucket)",
+    "answer": "According to [03_shopkart_checkout_case_study.pdf, page 2], each user is allowed 5 checkout requests per second with a burst of 10.",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "03_shopkart_checkout_case_study.pdf-p2-c2",
+      "03_shopkart_checkout_case_study.pdf-p1-c1",
+      "03_shopkart_checkout_case_study.pdf-p1-c3"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q20",
+    "type": "fact",
+    "question": "How long are idempotency keys stored?",
+    "expected": "24 hours",
+    "answer": "Every checkout request now carries an idempotency key generated by the app, and the order service stores keys for 24 hours; a repeated key returns the original response instead of creating a new order.",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p1-c3",
+      "03_shopkart_checkout_case_study.pdf-p1-c2",
+      "01_caching_and_cdn.pdf-p1-c3",
+      "03_shopkart_checkout_case_study.pdf-p3-c0",
+      "01_caching_and_cdn.pdf-p3-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q21",
+    "type": "cross-doc",
+    "question": "Compare the Redis usage at Halcyon (caching) and ShopKart (checkout).",
+    "expected": "Halcyon uses Redis cluster Kestrel as a shared cache with a 47s TTL; ShopKart uses Redis to store inventory reservations atomically with a Lua script.",
+    "answer": "According to the context, here's the comparison between Redis usage at Halcyon (caching) and ShopKart (checkout):\n\n* Halcyon Labs uses a shared distributed cache, specifically Redis, for caching.\n* ShopKart uses Redis for storing inventory reservations, with a Lua script that checks and reserves stock atomically.\n\nThere is no direct comparison of Redis usage for caching and checkout in the provided context.",
+    "retrieved": [
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "01_caching_and_cdn.pdf-p1-c1",
+      "03_shopkart_checkout_case_study.pdf-p2-c0",
+      "01_caching_and_cdn.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c2"
+    ],
+    "retrieval_hit": true,
+    "correct": false
+  },
+  {
+    "id": "q22",
+    "type": "cross-doc",
+    "question": "Who owns the caching standard and who led Project Falcon?",
+    "expected": "Arjun Venkatesh owns the caching standard; Farah Iqbal led Project Falcon.",
+    "answer": "According to the context:\n\n* The caching standard is owned by Arjun Venkatesh, Staff Engineer, Platform Engineering, as stated on page 1 of the [01_caching_and_cdn.pdf] document.\n* Project Falcon was led by Farah Iqbal, Principal Engineer, Data Infrastructure, as stated on page 3 of the [02_project_falcon_databases.pdf] document.",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p1-c0",
+      "01_caching_and_cdn.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p3-c1",
+      "01_caching_and_cdn.pdf-p3-c2",
+      "01_caching_and_cdn.pdf-p1-c1"
+    ],
+    "retrieval_hit": true,
+    "correct": true
+  },
+  {
+    "id": "q23",
+    "type": "unanswerable",
+    "question": "What TTL does ShopKart use for its product catalogue cache?",
+    "expected": "NOT IN DOCUMENTS - the system should say it doesn't know.",
+    "answer": "I don't know based on the documents.",
+    "retrieved": [
+      "01_caching_and_cdn.pdf-p1-c1",
+      "03_shopkart_checkout_case_study.pdf-p1-c0",
+      "02_project_falcon_databases.pdf-p3-c0",
+      "01_caching_and_cdn.pdf-p1-c0",
+      "01_caching_and_cdn.pdf-p1-c2"
+    ],
+    "retrieval_hit": null,
+    "correct": true
+  },
+  {
+    "id": "q24",
+    "type": "unanswerable",
+    "question": "How many virtual nodes does ShopKart's consistent hashing ring use?",
+    "expected": "NOT IN DOCUMENTS - only Falcon (Halcyon) uses 150 virtual nodes; a model that answers 150 is mixing documents.",
+    "answer": "I don't know based on the documents.",
+    "retrieved": [
+      "02_project_falcon_databases.pdf-p2-c2",
+      "02_project_falcon_databases.pdf-p2-c1",
+      "02_project_falcon_databases.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p2-c0",
+      "03_shopkart_checkout_case_study.pdf-p1-c0"
+    ],
+    "retrieval_hit": null,
+    "correct": true
+  }
+]
